@@ -34,3 +34,17 @@ pipeline {
         }
     }
 }
+
+post {
+    always {
+        withCredentials([string(credentialsId: 'slack-webhook', variable: 'SLACK_WEBHOOK')]) {
+            sh '''
+            curl -X POST -H "Content-type: application/json" \
+            --data '{
+              "text":"✅ Jenkins Build Finished\\nJob: '"$JOB_NAME"'\\nBuild: #'"$BUILD_NUMBER"'\\nStatus: '"$currentBuild.currentResult"'"
+            }' \
+            "$SLACK_WEBHOOK"
+            '''
+        }
+    }
+}
