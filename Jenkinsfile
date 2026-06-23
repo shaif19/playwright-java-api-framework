@@ -30,21 +30,18 @@ pipeline {
 
     post {
         always {
-            archiveArtifacts artifacts: 'allure-results/**', fingerprint: true
-        }
-    }
-}
 
-post {
-    always {
-        withCredentials([string(credentialsId: 'slack-webhook', variable: 'SLACK_WEBHOOK')]) {
-            sh '''
-            curl -X POST -H "Content-type: application/json" \
-            --data '{
-              "text":"✅ Jenkins Build Finished\\nJob: '"$JOB_NAME"'\\nBuild: #'"$BUILD_NUMBER"'\\nStatus: '"$currentBuild.currentResult"'"
-            }' \
-            "$SLACK_WEBHOOK"
-            '''
+            archiveArtifacts artifacts: 'allure-results/**', fingerprint: true
+
+            withCredentials([string(credentialsId: 'slack-webhook', variable: 'SLACK_WEBHOOK')]) {
+                sh """
+                curl -X POST -H 'Content-type: application/json' \
+                --data '{
+                  "text":"Jenkins Build Finished\nJob: ${env.JOB_NAME}\nBuild: #${env.BUILD_NUMBER}\nStatus: ${currentBuild.currentResult}"
+                }' \
+                ${SLACK_WEBHOOK}
+                """
+            }
         }
     }
 }
