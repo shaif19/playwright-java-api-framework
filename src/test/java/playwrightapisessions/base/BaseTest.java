@@ -5,6 +5,8 @@ import com.microsoft.playwright.APIRequestContext;
 import com.microsoft.playwright.Playwright;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Rule;
+import playwrightapisessions.utils.RetryRule;
 
 public class BaseTest {
 
@@ -25,4 +27,7 @@ public class BaseTest {
             playwright.close();
         }
     }
+
+    @Rule
+    public RetryRule retryRule = new RetryRule();
 }
