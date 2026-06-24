@@ -18,7 +18,7 @@
 
   <dependencies>
 
-    <!-- Playwrights -->
+    <!-- Playwright -->
     <dependency>
       <groupId>com.microsoft.playwright</groupId>
       <artifactId>playwright</artifactId>
