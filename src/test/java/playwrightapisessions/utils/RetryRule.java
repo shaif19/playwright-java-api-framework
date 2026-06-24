@@ -4,6 +4,8 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
+import static com.sun.beans.introspect.PropertyInfo.Name.description;
+
 public class RetryRule implements TestRule {
 
     private final int maxRetry = 2;
@@ -47,6 +49,8 @@ public class RetryRule implements TestRule {
                         }
 
                         System.out.println("Retrying due to timeout...");
+                        // printing in allure report
+                        System.out.println("[RETRY] " + description.getMethodName() + " attempt " + (attempt + 1));
                     }
                 }
 
@@ -54,4 +58,5 @@ public class RetryRule implements TestRule {
             }
         };
     }
+
 }
