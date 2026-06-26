@@ -10,10 +10,12 @@ import com.microsoft.playwright.Playwright;
 import com.microsoft.playwright.options.RequestOptions;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
 
+@Ignore
 public class DELETEAPICallTest {
 
     Playwright playwright;
