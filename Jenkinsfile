@@ -28,6 +28,7 @@ pipeline {
         stage('Run Tests') {
             steps {
             echo "Selected Environment: ${params.ENV}"
+            echo "Selected Browser: ${params.BROWSER}"
                 script {
                     // Run tests but don't stop the pipeline immediately
                     catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
