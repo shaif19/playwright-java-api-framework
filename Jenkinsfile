@@ -16,6 +16,12 @@ pipeline {
                     choices: ['chromium', 'firefox', 'webkit'],
                     description: 'Select Browser'
                 )
+
+            choice(
+                    name: 'SUITE',
+                    choices: ['smoke', 'regression'],
+                    description: 'Select Test Suite'
+                )
             }
     stages {
 
@@ -29,6 +35,7 @@ pipeline {
             steps {
             echo "Selected Environment: ${params.ENV}"
             echo "Selected Browser: ${params.BROWSER}"
+            echo "Selected Suite: ${params.SUITE}"
                 script {
                     // Run tests but don't stop the pipeline immediately
                     catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
