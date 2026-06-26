@@ -10,6 +10,12 @@ pipeline {
                 choices: ['dev', 'qa', 'stage'],
                 description: 'Select Environment'
             )
+
+            choice(
+                    name: 'BROWSER',
+                    choices: ['chromium', 'firefox', 'webkit'],
+                    description: 'Select Browser'
+                )
             }
     stages {
 
