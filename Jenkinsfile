@@ -4,7 +4,13 @@ pipeline {
     tools {
         maven 'Maven'
     }
-
+    parameters {
+            choice(
+                name: 'ENV',
+                choices: ['dev', 'qa', 'stage'],
+                description: 'Select Environment'
+            )
+            }
     stages {
 
         stage('Checkout') {
