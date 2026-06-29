@@ -7,7 +7,11 @@ public class BrowserFactory {
 
     public static Browser launchBrowser(Playwright playwright) {
 
-        String browserName = ConfigReader.get("browser");
+        String browserName = System.getProperty("browser");
+
+        if (browserName == null || browserName.isEmpty()) {
+            browserName = ConfigReader.get("browser");
+        }
 
         BrowserType.LaunchOptions options =
                 new BrowserType.LaunchOptions()

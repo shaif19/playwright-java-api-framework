@@ -39,7 +39,7 @@ pipeline {
                 script {
                     // Run tests but don't stop the pipeline immediately
                     catchError(buildResult: 'FAILURE', stageResult: 'FAILURE') {
-                        sh 'mvn clean test'
+                        sh "mvn clean test -Dbrowser=${params.BROWSER}"
                     }
                 }
             }
